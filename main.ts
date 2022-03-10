@@ -17,8 +17,6 @@ radio.onReceivedValue(function received(name: string, value: number) {
             }
             
             console.logValue("learned", remote_serial)
-            basic.clearScreen()
-            learning = 0
         }
         
     }
@@ -47,6 +45,12 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function send_learn() {
 })
 input.onLogoEvent(TouchButtonEvent.LongPressed, function learn() {
     
-    basic.showIcon(IconNames.Yes)
-    learning = 1
+    if (learning == 0) {
+        learning = 1
+        basic.showIcon(IconNames.Yes)
+    } else {
+        basic.clearScreen()
+        learning = 0
+    }
+    
 })

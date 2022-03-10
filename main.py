@@ -23,8 +23,6 @@ def received(name, value):
             if learned_serial not in data_list:
                 data_list.append(learned_serial)
             console.log_value("learned", remote_serial)
-            basic.clear_screen()
-            learning = 0
     for serialek in data_list:
         if remote_serial == serialek:
             if name == "alarm" and value == 1:
@@ -42,8 +40,12 @@ def off_alarm():
 
 def learn():
     global learning
-    basic.show_icon(IconNames.YES)
-    learning = 1
+    if learning == 0:
+        learning = 1
+        basic.show_icon(IconNames.YES)
+    else:
+        basic.clear_screen()
+        learning = 0
 
 def send_learn():
     radio.sendValue("learn", 1)
