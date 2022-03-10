@@ -37,6 +37,7 @@ def on_alarm():
 
 def off_alarm():
     radio.sendValue("alarm", 0)
+    music.stop_all_sounds()
 
 def learn():
     global learning

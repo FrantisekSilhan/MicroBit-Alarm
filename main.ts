@@ -39,6 +39,7 @@ input.onButtonPressed(Button.A, function on_alarm() {
 })
 input.onButtonPressed(Button.B, function off_alarm() {
     radio.sendValue("alarm", 0)
+    music.stopAllSounds()
 })
 input.onLogoEvent(TouchButtonEvent.Pressed, function send_learn() {
     radio.sendValue("learn", 1)
