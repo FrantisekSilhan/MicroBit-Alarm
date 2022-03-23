@@ -5,7 +5,7 @@ radio.set_transmit_serial_number(True)
 learning = 0
 data_list = [control.device_serial_number()]
 
-#funkce
+#funkce1
 radio.on_received_value(received)
 input.on_button_pressed(Button.A, on_alarm)
 input.on_button_pressed(Button.B, off_alarm)
