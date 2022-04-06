@@ -16,20 +16,15 @@ input.on_logo_event(TouchButtonEvent.LONG_PRESSED, learn)
 def received(name, value):
     global learning, data_list
     remote_serial = radio.received_packet(RadioPacketProperty.SERIAL_NUMBER)
-    console.log_value("remote", remote_serial)
     if learning == 1:
         if name == "learn" and value == 1:
-            learned_serial = radio.received_packet(RadioPacketProperty.SERIAL_NUMBER)
-            if learned_serial not in data_list:
-                data_list.append(learned_serial)
-            console.log_value("learned", remote_serial)
-    for serialek in data_list:
-        if remote_serial == serialek:
-            if name == "alarm" and value == 1:
-                music.play_tone(Note.C, 0)
-            elif name == "alarm" and value == 0:
-                music.stop_all_sounds()
-        print("remote_serial: "+remote_serial+" learned_serial: "+learned_serial)
+            if remote_serial not in data_list:
+                data_list.append(remote_serial)
+    if remote_serial in data_list:
+        if name == "alarm" and value == 1:
+            music.play_tone(Note.C, 0)
+        elif name == "alarm" and value == 0:
+            music.stop_all_sounds()
 
 
 def on_alarm():
