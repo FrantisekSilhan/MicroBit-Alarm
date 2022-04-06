@@ -21,10 +21,11 @@ def received(name, value):
             if remote_serial not in data_list:
                 data_list.append(remote_serial)
     if remote_serial in data_list:
-        if name == "alarm" and value == 1:
-            music.play_tone(Note.C, 0)
-        elif name == "alarm" and value == 0:
-            music.stop_all_sounds()
+        if name == "alarm":
+            if value == 1:
+                music.play_tone(Note.C, 0)
+            elif value == 0:
+                music.stop_all_sounds()
 
 
 def on_alarm():
